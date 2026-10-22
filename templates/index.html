@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MIKELA INDUSTRIAL ROBOTICS</title>
+    <style>
+        body { font-family: Arial; margin:0; background:#0f172a; color:white; }
+        .header { background: #0ea5e9; background: linear-gradient(135deg,#38bdf8,#2563eb); padding:80px 20px; text-align:center; }
+        .header h1 { font-size:36px; margin:0; letter-spacing:2px; }
+        .cards { display:flex; gap:20px; padding:20px; justify-content:center; }
+        .card { background:#1e293b; padding:20px; border-radius:10px; width:250px; }
+        .form-section { background:#1e293b; margin:30px auto; max-width:500px; padding:30px; border-radius:15px; }
+        input, textarea { width:100%; padding:12px; margin:8px 0; border-radius:8px; border:none; }
+        button { width:100%; padding:14px; background:#0ea5e9; color:white; border:none; border-radius:8px; font-size:16px; cursor:pointer; }
+        button:hover { background:#0284c7; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>MIKELA INDUSTRIAL ROBOTICS</h1>
+        <p>Future of Automation - Cape Town</p>
+    </div>
+
+    <div class="cards">
+        <div class="card"><h3>Robotic Arms</h3><p>Precision</p></div>
+        <div class="card"><h3>Automation</h3><p>Factory systems</p></div>
+        <div class="card"><h3>Maintenance</h3><p>24/7 Support</p></div>
+    </div>
+
+    <div class="form-section">
+        <h2>Contact Us - Get Quote</h2>
+        <form action="/submit-form" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message - What robot you need?" rows="4" required></textarea>
+            <button type="submit">SEND MESSAGE 🚀</button>
+        </form>
+        <p id="status"></p>
+    </div>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const res = await fetch('/submit-form', { method:'POST', body: formData });
+            const data = await res.json();
+            document.getElementById('status').innerText = "✅ Message Sent! Check your Gmail!";
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
